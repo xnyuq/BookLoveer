@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="vertical">
+
+<TextView
+
+    android:layout_marginTop="20dp"
+    android:layout_marginLeft="20dp"
+    android:id="@+id/displayNameTextView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textStyle="bold"
+    android:textSize="18sp"
+    android:text="user"
+    android:paddingBottom="8dp" />
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginLeft="20dp"
+        style="@android:attr/ratingBarStyleSmall"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:scaleX=".5"
+        android:scaleY=".5"
+        android:stepSize="0.5"
+        android:transformPivotX="0dp"
+        android:transformPivotY="0dp" />
+
+
+<TextView
+    android:id="@+id/commentTextView"
+    android:layout_marginLeft="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="comment 1 2 3"
+    android:textSize="16sp" />
+
+</LinearLayout>

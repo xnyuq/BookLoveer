@@ -59,13 +59,9 @@ public class HomeFragment extends Fragment {
 
                         return true;
 
-                    case R.id.navigation_search:
-//                        fragment = new ProfileFragment();
-//                        loadFragment(fragment);
-                        return true;
                     case R.id.navigation_profile:
-//                        fragment = new SearchFragment();
-//                        loadFragment(fragment);
+                        fragment = new ProfileFragment();
+                        loadFragment(fragment);
                         return true;
                 }
                 return false;

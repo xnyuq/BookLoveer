@@ -17,6 +17,8 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
             app:layout_constraintTop_toTopOf="parent"
+            android:name="com.example.bookloveer.fragment.FeedFragment"
+            tools:layout="@layout/fragment_feed"
             />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,16 +26,20 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BookItemAdapter extends RecyclerView.Adapter<BookItemAdapter.BookItemViewHolder>{
+    private List<Book> filteredList;
     private List<Book> bookList;
     private DatabaseReference booksRef;
     private Context context;
+    private OnClickListener onClickListener;
 
 
     public BookItemAdapter(List<Book> bookList, Context context) {
         this.bookList = bookList;
+        this.filteredList = bookList;
         this.context = context;
         this.booksRef = FirebaseDatabase.getInstance("https://book-lover-8bffc-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("books");
     }
@@ -48,20 +53,61 @@ public class BookItemAdapter extends RecyclerView.Adapter<BookItemAdapter.BookIt
 
     @Override
     public void onBindViewHolder(@NonNull BookItemAdapter.BookItemViewHolder holder, int position) {
-        Book book = bookList.get(position);
+        Book book = filteredList.get(position);
         holder.bind(book);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onClickListener != null){
+                    onClickListener.onClick(position, book);
+                }
+            }
+        });
 
     }
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                String filterString = constraint.toString().toLowerCase();
+                List<Book> filteredResults = new ArrayList<>();
+                for (Book book : bookList) {
+                    if (book.getTitle().toLowerCase().contains(filterString) || book.getAuthor().toLowerCase().contains(filterString)) {
+                        filteredResults.add(book);
+                    }
+                }
+                FilterResults results = new FilterResults();
+                results.values = filteredResults;
+                results.count = filteredResults.size();
+                return results;
+            }
 
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                filteredList = (List<Book>) results.values;
+                notifyDataSetChanged();
+            }
+        };
+    }
+
+    public void setOnClickListener(OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
+    }
+
+    public interface OnClickListener {
+        void onClick(int position, Book book);
+    }
     @Override
     public int getItemCount() {
-        return bookList.size();
+        return filteredList.size();
     }
+
+
 
     public class BookItemViewHolder extends RecyclerView.ViewHolder{
         ImageView ivBook;
         TextView title, author, description;
-        ImageView btnDelete, btnEdit, btnView;
+        ImageView btnDelete, btnEdit;
 
         public BookItemViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -96,6 +142,8 @@ public class BookItemAdapter extends RecyclerView.Adapter<BookItemAdapter.BookIt
                 }
             });
         }
+
+
         public void bind(Book book){
             title.setText(book.getTitle());
             // set image from image url
@@ -103,6 +151,7 @@ public class BookItemAdapter extends RecyclerView.Adapter<BookItemAdapter.BookIt
                     .load(book.getImage())
                     .into(ivBook);
             author.setText(book.getAuthor());
+
             description.setText(book.getDescription());
         }
     }

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -66,9 +67,9 @@ public class AddEditBookFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_book, container, false);
-        if (container != null) {
-            container.removeAllViews();
-        }
+//        if (container != null) {
+//            container.removeAllViews();
+//        }
 
         etTitle = view.findViewById(R.id.et_title);
         etAuthor = view.findViewById(R.id.et_author);
@@ -96,9 +97,9 @@ public class AddEditBookFragment extends Fragment {
         etImageUrl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 openFileChooser();
                 // why fragment close after file done chosing
-
             }
         });
 

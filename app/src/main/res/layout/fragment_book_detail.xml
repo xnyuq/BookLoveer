@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.BookDetailFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/overallRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Overall Rating: "
+            app:layout_constraintTop_toBottomOf="@+id/bookDescription"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <!-- Book Info Section -->
+        <TextView
+            android:id="@+id/bookTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Book Title"
+            app:layout_constraintTop_toBottomOf="@+id/bookThumb"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/bookAuthor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Book Author"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bookTitle"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/bookDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Book Description"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bookAuthor"
+            />
+
+        <ImageView
+            android:id="@+id/bookThumb"
+            android:layout_width="150dp"
+            android:layout_height="200dp"
+            android:adjustViewBounds="true"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:src="@color/common_google_signin_btn_text_dark"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <!-- Review Form Section -->
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/overallRating"
+            app:layout_constraintBottom_toTopOf="@+id/reviewComment" />
+
+        <EditText
+            android:id="@+id/reviewComment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Leave a review..."
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ratingBar"
+            />
+        <Button
+            android:id="@+id/reviewSubmit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ratingBar"
+            app:layout_constraintBottom_toTopOf="@+id/reviewList" />
+
+        <!-- Review History Section -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/reviewList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/reviewComment"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

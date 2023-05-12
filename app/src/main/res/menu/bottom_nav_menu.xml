@@ -10,10 +10,6 @@
         android:title="Book"
         android:icon="@drawable/ic_book" />
 
-    <item
-        android:id="@+id/navigation_search"
-        android:title="Search"
-        android:icon="@drawable/ic_search" />
 
     <item
         android:id="@+id/navigation_profile"

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.LoginFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvTitle"
+            android:text="BookLoveer"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="30sp"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/etEmail"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:layout_marginTop="30sp"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/etPassword"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:layout_marginTop="30sp"
+            app:layout_constraintTop_toBottomOf="@+id/etEmail"
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnLogin"
+            android:text="Login"
+            android:layout_marginTop="30sp"
+            app:layout_constraintTop_toBottomOf="@+id/etPassword"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvRegister"
+            android:text="Register"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="30sp"
+            app:layout_constraintTop_toBottomOf="@+id/btnLogin"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

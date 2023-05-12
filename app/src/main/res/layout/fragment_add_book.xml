@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add book"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/et_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:hint="title" />
+
+    <EditText
+        android:id="@+id/et_author"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:hint="author" />
+
+    <EditText
+        android:id="@+id/et_image_url"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:maxLines="2"
+        android:hint="url" />
+
+    <EditText
+        android:id="@+id/et_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="2"
+        android:layout_marginBottom="16dp"
+        android:hint="description" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_suggested_books"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/btn_save_book"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save" />
+
+</LinearLayout>

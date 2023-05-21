@@ -10,12 +10,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.bookloveer.R;
-import com.example.bookloveer.fragment.LoginFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,9 +21,7 @@ public class HomeFragment extends Fragment {
 
     BottomNavigationView bottomNavigationView;
 
-    public HomeFragment() {
-        // Required empty public constructor
-    }
+    public HomeFragment() {}
 
 
     @Override
@@ -71,12 +65,6 @@ public class HomeFragment extends Fragment {
 
 
         return view;
-    }
-
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putString("dummy", "yummy"); // deo work
     }
 
     private void loadFragment(Fragment fragment) {

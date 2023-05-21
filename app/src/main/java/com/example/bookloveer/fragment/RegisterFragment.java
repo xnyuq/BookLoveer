@@ -23,6 +23,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterFragment extends Fragment {
 
@@ -71,10 +72,13 @@ public class RegisterFragment extends Fragment {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
+                                    // Sign up success, update UI with the signed-in user's information
                                     getActivity().getSupportFragmentManager().popBackStack();
+                                    // Add user to database
+                                    FirebaseDatabase.getInstance("https://book-lover-8bffc-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("users")
+                                            .child(mAuth.getCurrentUser().getUid()).child("email").setValue(email);
                                 } else {
-                                    // If sign in fails, display a message to the user.
+                                    // If sign up fails, display a message to the user.
                                     Log.w(TAG, "createUserWithEmail:failure", task.getException());
                                     Toast.makeText(getContext(), "Authentication failed.",
                                             Toast.LENGTH_SHORT).show();

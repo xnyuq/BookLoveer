@@ -11,6 +11,13 @@
         android:icon="@drawable/ic_book" />
 
 
+
+    <item
+        android:id="@+id/navigation_conversation"
+        android:title="Message"
+        android:icon="@drawable/ic_message" />
+
+
     <item
         android:id="@+id/navigation_profile"
         android:title="Profile"

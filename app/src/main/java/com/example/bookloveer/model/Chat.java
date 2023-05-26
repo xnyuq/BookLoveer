@@ -1,28 +1,18 @@
 package com.example.bookloveer.model;
 
+import java.util.ArrayList;
 import java.util.List;
-
 public class Chat {
-    private String id;
     private String email;
-    private List<Mess> messages;
+    private String lastMessage;
+    private long timestamp;
 
-    public Chat(String id, String email, List<Mess> messages) {
-        this.id = id;
+    public Chat() {}
+
+    public Chat(String email, String lastMessage, long timestamp) {
         this.email = email;
-        this.messages = messages;
-    }
-
-    public Chat(List<Mess> messages) {
-        this.messages = messages;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+        this.lastMessage = lastMessage;
+        this.timestamp = timestamp;
     }
 
     public String getEmail() {
@@ -33,20 +23,19 @@ public class Chat {
         this.email = email;
     }
 
-    public List<Mess> getMessages() {
-        return messages;
+    public String getLastMessage() {
+        return lastMessage;
     }
 
-    public void setMessages(List<Mess> messages) {
-        this.messages = messages;
+    public void setLastMessage(String lastMessage) {
+        this.lastMessage = lastMessage;
     }
 
-    public String getLatestMessagePreview() {
-        if (messages.size() > 0) {
-            Mess latestMessage = messages.get(messages.size() - 1);
-            return latestMessage.getMessage();
-        } else {
-            return "";
-        }
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
     }
 }

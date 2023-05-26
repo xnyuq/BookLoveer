@@ -19,6 +19,8 @@ import com.example.bookloveer.adapter.BookItemAdapter;
 import com.example.bookloveer.adapter.ConvoAdapter;
 import com.example.bookloveer.model.Book;
 import com.example.bookloveer.model.Chat;
+import com.example.bookloveer.model.Mess;
+import com.example.bookloveer.model.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -87,37 +89,54 @@ public class ConvoFragment extends Fragment {
         convoSearchView = view.findViewById(R.id.convoSearchView);
         convoRecyclerView = view.findViewById(R.id.convoRecyclerView);
 
-        DatabaseReference convoRef = FirebaseDatabase.getInstance("https://book-lover-8bffc-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("convo");
+        DatabaseReference userRef = FirebaseDatabase.getInstance("https://book-lover-8bffc-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("users");
 
-        ValueEventListener booksListener = new ValueEventListener() {
+        ValueEventListener userListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 chatList = new ArrayList<>();
                 for (DataSnapshot chatSnapshot : dataSnapshot.getChildren()) {
-                    Chat chat = chatSnapshot.getValue(Chat.class);
+                    Chat chat = new Chat();
+                    User user = chatSnapshot.getValue(User.class);
+                    chat.setEmail(user.getEmail());
+
                     chatList.add(chat);
                 }
                 convoAdapter = new ConvoAdapter(chatList);
-//                convoAdapter.setOnClickListener(new BookItemAdapter.OnClickListener() {
-//                    @Override
-//                    public void onClick(int position, Book book) {
-//                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-//                        transaction.replace(R.id.homeContainer, new BookDetailFragment(book));
-//                        transaction.addToBackStack(null);
-//                        transaction.commit();
-//                    }
-//                });
+                convoAdapter.setOnClickListener(new ConvoAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(int position) {
+                        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        User component = new User();
+                        component.setEmail(chatList.get(position).getEmail());
+                        fragmentTransaction.replace(R.id.homeContainer, new ChatFragment(component));
+                        fragmentTransaction.addToBackStack(null);
+                        fragmentTransaction.commit();
+                    }
+                });
                 convoRecyclerView.setAdapter(convoAdapter);
+                convoSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                    @Override
+                    public boolean onQueryTextSubmit(String query) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onQueryTextChange(String newText) {
+                        convoAdapter.getFilter().filter(newText);
+                        return true;
+                    }
+                });
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.w("BooksActivity", "loadBooks:onCancelled", databaseError.toException());
+                Log.w("ConvoFragment", "loadPost:onCancelled", databaseError.toException());
             }
         };
 
-        booksRef.addValueEventListener(booksListener);
-        rvBook.setLayoutManager(new LinearLayoutManager(getActivity()));
+        userRef.addValueEventListener(userListener);
+        convoRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
         return view;

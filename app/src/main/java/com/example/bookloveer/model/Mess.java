@@ -5,12 +5,12 @@ public class Mess {
     private String senderId;
     private String receiverId;
     private String message;
-    private String timestamp;
+    private long timestamp;
 
     public Mess() {
     }
 
-    public Mess(String id, String senderId, String receiverId, String message, String timestamp) {
+    public Mess(String id, String senderId, String receiverId, String message, long timestamp) {
         this.id = id;
         this.senderId = senderId;
         this.receiverId = receiverId;
@@ -50,11 +50,11 @@ public class Mess {
         this.message = message;
     }
 
-    public String getTimestamp() {
+    public long getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(String timestamp) {
+    public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
     }
 }

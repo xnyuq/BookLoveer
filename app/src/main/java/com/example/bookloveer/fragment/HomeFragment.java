@@ -57,6 +57,10 @@ public class HomeFragment extends Fragment {
                         fragment = new ProfileFragment();
                         loadFragment(fragment);
                         return true;
+                    case R.id.navigation_conversation:
+                        fragment = new ConvoFragment();
+                        loadFragment(fragment);
+                        return true;
                 }
                 return false;
             }

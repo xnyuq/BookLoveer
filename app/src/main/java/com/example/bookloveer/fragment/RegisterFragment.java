@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.bookloveer.MainActivity;
 import com.example.bookloveer.R;
+import com.example.bookloveer.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -75,8 +76,11 @@ public class RegisterFragment extends Fragment {
                                     // Sign up success, update UI with the signed-in user's information
                                     getActivity().getSupportFragmentManager().popBackStack();
                                     // Add user to database
+                                    User user = new User(mAuth.getCurrentUser().getUid(), email);
                                     FirebaseDatabase.getInstance("https://book-lover-8bffc-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("users")
-                                            .child(mAuth.getCurrentUser().getUid()).child("email").setValue(email);
+                                            .child(mAuth.getCurrentUser().getUid())
+                                            .setValue(user);
+
                                 } else {
                                     // If sign up fails, display a message to the user.
                                     Log.w(TAG, "createUserWithEmail:failure", task.getException());
